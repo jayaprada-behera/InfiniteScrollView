@@ -39,6 +39,12 @@
         
     // Initialization code
     _infiniteTableView = [[UITableView alloc] init] ;
+        pageControl_  = [[UIPageControl alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+        pageControl_.numberOfPages = views_.count;
+        pageControl_.currentPage = 0;
+        
+        pageControl_.backgroundColor = [UIColor blackColor];
+        [self addSubview:pageControl_];
 
     CGRect frame1 = frame;
     _infiniteTableView.transform = CGAffineTransformMakeRotation(-M_PI/2.0);
@@ -97,78 +103,26 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UITableView *)tableView {
-    NSLog(@"Didend decelerating Contectoffset:%f", tableView.contentOffset.y);
-    NSArray *visibleCells = [_infiniteTableView visibleCells];
+    NSArray *visibleCells = [tableView visibleCells];
+    
     if (visibleCells.count == 2) {//If scroll is stopped at the middle of the two cells then scroll to a particual position to in the middle of 3 cells
         
-        NSIndexPath *indexPath = [_infiniteTableView indexPathForRowAtPoint:CGPointMake(_infiniteTableView.contentOffset.x, _infiniteTableView.contentOffset.y)];
+        NSIndexPath *indexPath = [_infiniteTableView indexPathForRowAtPoint:CGPointMake(_infiniteTableView.contentOffset.x, _infiniteTableView.contentOffset.y + ROW_WIDTH)];
         [_infiniteTableView scrollToRowAtIndexPath:indexPath
                                   atScrollPosition:UITableViewScrollPositionMiddle
                                           animated:YES];
         
-    }
-    NSInteger v_tag  = 0;
-    NSArray *subViewArray;
-    NSMutableArray *a = [NSMutableArray new];
-    [a removeAllObjects];
-    
-    
-    if (isFastScrolling) {
+    }else if (isFastScrolling) {
+        
         isFastScrolling = NO;
-        NSIndexPath *indexPath = [_infiniteTableView indexPathForRowAtPoint:CGPointMake(_infiniteTableView.contentOffset.x, _infiniteTableView.contentOffset.y)];
-        [_infiniteTableView scrollToRowAtIndexPath:indexPath
-                                  atScrollPosition:UITableViewScrollPositionMiddle
-                                          animated:YES];
-        for (UITableViewCell *cell in visibleCells) {
-            subViewArray = cell.contentView.subviews;
-            for (UIView *view in subViewArray) {
-                v_tag = view.tag;
-                [a addObject:view];
-            }
-        }
-        if (neg_velocity) {
-            NSLog(@"fast scrolling neg_velocity");
-            UILabel *v = [a objectAtIndex:1];
-            NSLog(@"text :%@",v.text);
-            v_tag = v.tag;
-            
-        }else{
-            NSLog(@"fast scrolling postv_velocity");
-            UILabel *v = [a objectAtIndex:0];
-            NSLog(@"text :%@",v.text);
-            v_tag = v.tag;
-            
-        }
-        
-    }else{
-        for (UITableViewCell *cell in visibleCells) {
-            subViewArray = cell.contentView.subviews;
-            for (UIView *view in subViewArray) {
-                v_tag = view.tag;
-                [a addObject:view];
-            }
-        }
-        if (neg_velocity) {
-            NSLog(@"slow scrolling neg_velocity");
-            
-            //count -2 ,slow page/speed page
-            UILabel *v = [a objectAtIndex:a.count-2];
-            NSLog(@"text :%@",v.text);
-            v_tag = v.tag;
-            
-        }else{
-            NSLog(@"slow scrolling postv_velocity");
-            
-            //object index 1,slow
-            UILabel *v = [a objectAtIndex:1];
-            NSLog(@"text :%@",v.text);
-            v_tag = v.tag;
-        }
+        NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:CGPointMake(tableView.contentOffset.x, tableView.contentOffset.y +ROW_WIDTH)];
+        [tableView scrollToRowAtIndexPath:indexPath
+                         atScrollPosition:UITableViewScrollPositionMiddle
+                                 animated:YES];
     }
-    pageControl_.currentPage = v_tag ;
+    //page control current page calculation
     
-    NSLog(@"array %@",a);
-
+    [self setCurrentPageForPageControl];
 }
 
 - (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -199,17 +153,49 @@
         NSLog(@"2page move");
     }else if (velocity.y == 0){
         //        NSLog(@"0page move");
-        //if user drag and  finger up and scrolling is stopped
+        //if user drag and  finger up. no scrollDidEndDecelerating method is called as scrollview is not getting scrolled.
         
-        NSIndexPath *indexPath = [_infiniteTableView indexPathForRowAtPoint:CGPointMake(_infiniteTableView.contentOffset.x,  targetContentOffset->y)];
+        NSIndexPath *indexPath = [_infiniteTableView indexPathForRowAtPoint:CGPointMake(_infiniteTableView.contentOffset.x,  targetContentOffset->y + ROW_WIDTH)];
         [_infiniteTableView scrollToRowAtIndexPath:indexPath
                                   atScrollPosition:UITableViewScrollPositionMiddle
                                           animated:YES];
+        //Set the page control while only draging.
+        [self setCurrentPageForPageControl];
     }else{
         // when user scrolls very fast
         isFastScrolling = YES;
     }
+}
+
+
+-(void)setCurrentPageForPageControl{
+    
+    NSInteger v_tag  = 0;
+    NSMutableArray *subViewArray  =[NSMutableArray new];
+    
+    NSArray *visibleCells = [_infiniteTableView visibleCells];
+    
+    [visibleCells enumerateObjectsUsingBlock:^(UITableViewCell *cell, NSUInteger idx, BOOL *stop) {
+        if (idx == visibleCells.count) {
+            *stop = YES;
+        }
+        [subViewArray addObject: cell.contentView.subviews];
+    }];
+    
+    NSMutableArray *array_ = [NSMutableArray new];
+    
+    for (NSArray *arr in subViewArray) {
+        [array_ addObject:[arr lastObject]];
+    }
+    //array_ contains all the visible subviews
+    
+    UILabel *v = [array_ objectAtIndex:1];
+    NSLog(@"text :%@",v.text);
+    v_tag = v.tag;
+    
+    pageControl_.currentPage = v_tag ;
     
 }
+
 
 @end
