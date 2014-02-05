@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>53DA3481-0247-4F8A-8650-527F75BC6DFB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>InfiniteScrolling</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B0815D72-0210-44D0-ADAE-F734A1EB1888</key>
+		<string>https://github.com/jayaprada-behera/InfiniteScrollView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>InfiniteScrolling/InfiniteScrolling.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B0815D72-0210-44D0-ADAE-F734A1EB1888</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jayaprada-behera/InfiniteScrollView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B0815D72-0210-44D0-ADAE-F734A1EB1888</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B0815D72-0210-44D0-ADAE-F734A1EB1888</string>
+			<key>IDESourceControlWCCName</key>
+			<string>InfiniteScrollView</string>
+		</dict>
+	</array>
+</dict>
+</plist>

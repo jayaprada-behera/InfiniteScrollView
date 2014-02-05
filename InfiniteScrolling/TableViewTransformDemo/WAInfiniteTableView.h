@@ -12,12 +12,7 @@
 #define TOTAL_NUMBER_OF_ROWS      500
 
 @interface WAInfiniteTableView : UIView<UITableViewDataSource,UITableViewDelegate>
-{
-    
-    float currOffsetY;
-    NSMutableArray *views;
 
-}
 @property(nonatomic,strong)UITableView *infiniteTableView;
 
 -(id)initWithFrame:(CGRect)frame andCellWidth:(CGFloat)width andviews:(NSArray *)views_;

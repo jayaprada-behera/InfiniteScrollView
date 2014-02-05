@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF6BC023189A2CE900B498DB"
-               BuildableName = "TableViewTransformDemo.app"
+               BuildableName = "InfiniteScrolling.app"
                BlueprintName = "InfiniteScrolling"
                ReferencedContainer = "container:InfiniteScrolling.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF6BC044189A2CE900B498DB"
-               BuildableName = "TableViewTransformDemoTests.xctest"
+               BuildableName = "InfiniteScrollingTests.xctest"
                BlueprintName = "InfiniteScrollingTests"
                ReferencedContainer = "container:InfiniteScrolling.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF6BC023189A2CE900B498DB"
-            BuildableName = "TableViewTransformDemo.app"
+            BuildableName = "InfiniteScrolling.app"
             BlueprintName = "InfiniteScrolling"
             ReferencedContainer = "container:InfiniteScrolling.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF6BC023189A2CE900B498DB"
-            BuildableName = "TableViewTransformDemo.app"
+            BuildableName = "InfiniteScrolling.app"
             BlueprintName = "InfiniteScrolling"
             ReferencedContainer = "container:InfiniteScrolling.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF6BC023189A2CE900B498DB"
-            BuildableName = "TableViewTransformDemo.app"
+            BuildableName = "InfiniteScrolling.app"
             BlueprintName = "InfiniteScrolling"
             ReferencedContainer = "container:InfiniteScrolling.xcodeproj">
          </BuildableReference>
